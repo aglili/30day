@@ -1,0 +1,3 @@
+Understanding arrays and slices in Go
+Manipulating slices (appending, slicing, range)
+Working with maps and key-value pairs
