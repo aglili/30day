@@ -1,0 +1,2 @@
+Dealing with errors in Go
+Using the built-in error type and handling errors gracefully
