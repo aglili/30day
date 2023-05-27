@@ -1,0 +1,3 @@
+Introduction to Go's concurrency model
+Goroutines and how to create and manage them
+Synchronization with channels
