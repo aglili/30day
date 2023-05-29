@@ -1,0 +1,4 @@
+
+Design principles of RESTful APIs
+Implementing RESTful endpoints in Go
+Request and response handling, status codes
