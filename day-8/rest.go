@@ -31,6 +31,7 @@ func main() {
 	http.HandleFunc("/user/create",createUser)
 	http.HandleFunc("/user/",getUser)
 	http.HandleFunc("/user/delete/",deleteUser)
+	http.HandleFunc("/user/update/",updateUser)
 
 
 	log.Fatal(http.ListenAndServe(":8000",nil))
@@ -154,4 +155,61 @@ func deleteUser(w http.ResponseWriter,r *http.Request){
 
 
 	fmt.Fprintf(w,"User Deleted Sucessfully")
+}
+
+
+func updateUser(w http.ResponseWriter, r *http.Request){
+
+	// set content type
+
+	w.Header().Set("Content-type","applecation/json")
+
+	user_id := r.URL.Path[len("/user/update/"):]
+
+	idNum, err := strconv.Atoi(user_id)
+
+	if err != nil {
+		fmt.Fprintf(w,"Error",err)
+		return
+	}
+
+
+	// find the index of the usr in the slides
+	index := -1
+
+	for i,user := range users{
+		if user.Id == idNum{
+			index = i
+			break
+		}
+	}
+
+	// check if user exists
+
+	if index == -1{
+		fmt.Fprintf(w,"User Not Found")
+		return
+	}
+
+	var updatedUser User
+
+	err = json.NewDecoder(r.Body).Decode(&updatedUser)
+
+	if err != nil {
+		fmt.Fprintf(w,"Error: %v",err)
+		return
+	}
+
+	users[index].Name = updatedUser.Name
+	users[index].Adress = updatedUser.Adress
+	users[index].Email = updatedUser.Email
+
+
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(users[index])
+	if err != nil {
+		fmt.Fprintf(w,"Error: %v",err)
+		return
+	}
+
 }
