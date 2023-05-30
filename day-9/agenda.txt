@@ -1,0 +1,5 @@
+Database Integration with Go
+
+Introduction to database/sql package in Go
+Connecting to a database (e.g., MySQL, PostgreSQL)
+Executing queries, handling results, and transactions
