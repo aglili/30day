@@ -48,8 +48,7 @@ func main()  {
 	
 }
 
-
-func addUser(w http.ResponseWriter,r *http.Request){
+  func addUser(w http.ResponseWriter,r *http.Request){
 	w.Header().Set("Content-type","application/json")
 
 
